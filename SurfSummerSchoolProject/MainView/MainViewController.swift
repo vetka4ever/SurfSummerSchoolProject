@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     private var findButton: UIBarButtonItem{
         let image = UIImage(systemName: "magnifyingglass")
@@ -20,14 +20,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         navigationItem.rightBarButtonItem  = findButton
-        self.title = "Navigation title"
+        self.title = "Главная"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
     }
     
     @objc func rightBarButtonSelector()
     {
-        print("Search Button was tapped ")
+        print("Search Button was tapped")
+        navigationController?.pushViewController(SearchViewController(), animated: true)
     }
 
 
