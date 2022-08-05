@@ -19,9 +19,6 @@ final class TabBarConfigurator{
         return getTaBarController()
     }
     
-    
-    
-   
 }
 
 private extension TabBarConfigurator {
