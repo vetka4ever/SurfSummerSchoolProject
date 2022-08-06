@@ -11,7 +11,7 @@ import UIKit
 final class MainModel{
     
     //MARK: - Properties
-    var items: [ItemModel] = []
+    private var items: [ItemModel] = []
     
     // MARK: - Methods
     func getPosts(){
@@ -21,7 +21,7 @@ final class MainModel{
     struct ItemModel{
         let image: UIImage?
         let title: String
-        let isFavotire: Bool
+        var isFavotire: Bool
         let dateCreation: String
         let content: String
     
@@ -31,6 +31,31 @@ final class MainModel{
     }
         
         
+        
+    }
+    
+    func getItem(id: Int) -> ItemModel{
+        items[id]
+    }
+    
+    func getCountOfItems() -> Int{
+        items.count
+    }
+    
+    func getTitleOfItem(id: Int) -> String{
+        items[id].title
+    }
+    
+    func getImageOfItem(id: Int) -> UIImage?{
+        items[id].image
+    }
+    
+    func getFavoriteOfItem(id: Int) -> Bool{
+        items[id].isFavotire
+    }
+    
+    func updateFavoriteStatus(id: Int){
+        items[id].isFavotire.toggle()
         
     }
     
