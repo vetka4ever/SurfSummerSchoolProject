@@ -98,6 +98,5 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    }
+    
 }

@@ -28,6 +28,7 @@ private extension TabBarConfigurator {
         tabBar.tabBar.tintColor = .black
         tabBar.tabBar.unselectedItemTintColor = .lightGray
         tabBar.tabBar.backgroundColor = .white
+        tabBar.tabBar.barTintColor = .white
         tabBar.viewControllers = getControllers()
         return tabBar
     }

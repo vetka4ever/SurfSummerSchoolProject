@@ -27,6 +27,8 @@
 		F3BB7FF428995B5B000E10FD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BB7FF328995B5B000E10FD /* MainViewController.swift */; };
 		F3BB7FF928995B5D000E10FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3BB7FF828995B5D000E10FD /* Assets.xcassets */; };
 		F3BB7FFC28995B5D000E10FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3BB7FFA28995B5D000E10FD /* LaunchScreen.storyboard */; };
+		F3F392D3289FB1670077DDEF /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F392D1289FB1670077DDEF /* FavoriteTableViewCell.swift */; };
+		F3F392D4289FB1670077DDEF /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3F392D2289FB1670077DDEF /* FavoriteTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		F3BB7FF828995B5D000E10FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3BB7FFB28995B5D000E10FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3BB7FFD28995B5D000E10FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3F392D1289FB1670077DDEF /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		F3F392D2289FB1670077DDEF /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +150,7 @@
 				F3BB7FF128995B5B000E10FD /* SceneDelegate.swift */,
 				F341FFFF289C52180033C689 /* TabBar */,
 				F341FFF5289C50310033C689 /* MainView */,
-				F37A8E70289D4723006CCF8D /* CollectionViewCell */,
+				F3F392D5289FB1740077DDEF /* Cells */,
 				F341FFF6289C509A0033C689 /* FavoriteView */,
 				F341000A289C56060033C689 /* ProfileView */,
 				F341FFEC289C4AAA0033C689 /* SearchScreen */,
@@ -155,6 +159,24 @@
 				F3BB7FFD28995B5D000E10FD /* Info.plist */,
 			);
 			path = SurfSummerSchoolProject;
+			sourceTree = "<group>";
+		};
+		F3F392D5289FB1740077DDEF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F37A8E70289D4723006CCF8D /* CollectionViewCell */,
+				F3F392D6289FB1830077DDEF /* FavoriteCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F3F392D6289FB1830077DDEF /* FavoriteCell */ = {
+			isa = PBXGroup;
+			children = (
+				F3F392D1289FB1670077DDEF /* FavoriteTableViewCell.swift */,
+				F3F392D2289FB1670077DDEF /* FavoriteTableViewCell.xib */,
+			);
+			path = FavoriteCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F37A8E74289D475B006CCF8D /* MainItemCollectionViewCell.xib in Resources */,
+				F3F392D4289FB1670077DDEF /* FavoriteTableViewCell.xib in Resources */,
 				F3BB7FFC28995B5D000E10FD /* LaunchScreen.storyboard in Resources */,
 				F3BB7FF928995B5D000E10FD /* Assets.xcassets in Resources */,
 			);
@@ -241,6 +264,7 @@
 				F341FFF0289C4BFA0033C689 /* SearchModel.swift in Sources */,
 				F341FFEB289C4A940033C689 /* SearchViewController.swift in Sources */,
 				F3410003289C52610033C689 /* TabBarModel.swift in Sources */,
+				F3F392D3289FB1670077DDEF /* FavoriteTableViewCell.swift in Sources */,
 				F341FFF2289C501D0033C689 /* MainPresenter.swift in Sources */,
 				F341FFFE289C50FF0033C689 /* FavoriteModel.swift in Sources */,
 				F3BB7FF228995B5B000E10FD /* SceneDelegate.swift in Sources */,
