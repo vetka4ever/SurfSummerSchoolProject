@@ -22,6 +22,13 @@ class FavoriteTableViewCell: UITableViewCell {
             viewImage.image = image
         }
     }
+    
+    var countOfLines: Int = 1{
+        didSet{
+            hideUnderTitle.numberOfLines = countOfLines
+            
+        }
+    }
    
     var mainTitle: String = ""{
         didSet{

@@ -14,7 +14,7 @@ class FavoriteViewController: UIViewController {
         let tableView = UITableView(frame: view.frame, style: .insetGrouped)
         tableView.delegate = self
         tableView.dataSource = self
-//        tableView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
         tableView.register(UINib(nibName: "\(FavoriteTableViewCell.self)", bundle: .main), forCellReuseIdentifier: "\(FavoriteTableViewCell.self)")
         tableView.backgroundColor = .white

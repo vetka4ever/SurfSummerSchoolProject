@@ -13,7 +13,7 @@ final class MainPresenter{
     private var view = UIViewController()
     
     
-    // MARK: - Methods
+    // MARK: - Methods For View
     func setView(view: MainViewController){
         self.view = view
     }
@@ -23,7 +23,7 @@ final class MainPresenter{
         return  model.getCountOfItems()
     }
     
-    
+
     func getTitleOfItem(id: Int) -> String{
         model.getTitleOfItem(id: id)
     }
@@ -35,12 +35,19 @@ final class MainPresenter{
     func getFavoriteOfItem(id: Int) -> Bool{
         model.getFavoriteOfItem(id: id)
     }
-    func getItem(id: Int) -> MainModel.ItemModel{
+    func getItem(id: Int) -> DetailItemModel{
         model.getItem(id: id)
     }
     
     func updateFavoriteStatus(id: Int){
         model.updateFavoriteStatus(id: id)
         
+    }
+    
+    func prepareDetailView(id: Int) -> DetailViewController{
+        let item = model.getItem(id: id)
+        let view = DetailViewController()
+        view.accessToModel = item
+        return view
     }
 }

@@ -20,6 +20,8 @@
 		F341FFFA289C50D60033C689 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341FFF9289C50D60033C689 /* FavoriteViewController.swift */; };
 		F341FFFC289C50F40033C689 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341FFFB289C50F40033C689 /* FavoritePresenter.swift */; };
 		F341FFFE289C50FF0033C689 /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F341FFFD289C50FF0033C689 /* FavoriteModel.swift */; };
+		F353EC7E289FE712005DD8C2 /* DetailItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F353EC7D289FE712005DD8C2 /* DetailItemModel.swift */; };
+		F353EC81289FE7BC005DD8C2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F353EC7F289FE7BC005DD8C2 /* DetailViewController.swift */; };
 		F37A8E73289D475B006CCF8D /* MainItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A8E71289D475B006CCF8D /* MainItemCollectionViewCell.swift */; };
 		F37A8E74289D475B006CCF8D /* MainItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F37A8E72289D475B006CCF8D /* MainItemCollectionViewCell.xib */; };
 		F3BB7FF028995B5B000E10FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BB7FEF28995B5B000E10FD /* AppDelegate.swift */; };
@@ -45,6 +47,8 @@
 		F341FFF9289C50D60033C689 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		F341FFFB289C50F40033C689 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		F341FFFD289C50FF0033C689 /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		F353EC7D289FE712005DD8C2 /* DetailItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemModel.swift; sourceTree = "<group>"; };
+		F353EC7F289FE7BC005DD8C2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F37A8E71289D475B006CCF8D /* MainItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		F37A8E72289D475B006CCF8D /* MainItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		F3BB7FEC28995B5B000E10FD /* SurfSummerSchoolProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurfSummerSchoolProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,13 +122,22 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		F37A8E70289D4723006CCF8D /* CollectionViewCell */ = {
+		F353EC7C289FE6F4005DD8C2 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				F353EC7D289FE712005DD8C2 /* DetailItemModel.swift */,
+				F353EC7F289FE7BC005DD8C2 /* DetailViewController.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		F37A8E70289D4723006CCF8D /* MainItem */ = {
 			isa = PBXGroup;
 			children = (
 				F37A8E71289D475B006CCF8D /* MainItemCollectionViewCell.swift */,
 				F37A8E72289D475B006CCF8D /* MainItemCollectionViewCell.xib */,
 			);
-			path = CollectionViewCell;
+			path = MainItem;
 			sourceTree = "<group>";
 		};
 		F3BB7FE328995B5B000E10FD = {
@@ -150,6 +163,7 @@
 				F3BB7FF128995B5B000E10FD /* SceneDelegate.swift */,
 				F341FFFF289C52180033C689 /* TabBar */,
 				F341FFF5289C50310033C689 /* MainView */,
+				F353EC7C289FE6F4005DD8C2 /* DetailView */,
 				F3F392D5289FB1740077DDEF /* Cells */,
 				F341FFF6289C509A0033C689 /* FavoriteView */,
 				F341000A289C56060033C689 /* ProfileView */,
@@ -164,7 +178,7 @@
 		F3F392D5289FB1740077DDEF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F37A8E70289D4723006CCF8D /* CollectionViewCell */,
+				F37A8E70289D4723006CCF8D /* MainItem */,
 				F3F392D6289FB1830077DDEF /* FavoriteCell */,
 			);
 			path = Cells;
@@ -253,10 +267,12 @@
 			files = (
 				F341FFF4289C50280033C689 /* MainModel.swift in Sources */,
 				F3BB7FF428995B5B000E10FD /* MainViewController.swift in Sources */,
+				F353EC7E289FE712005DD8C2 /* DetailItemModel.swift in Sources */,
 				F341FFFC289C50F40033C689 /* FavoritePresenter.swift in Sources */,
 				F3BB7FF028995B5B000E10FD /* AppDelegate.swift in Sources */,
 				F3410009289C56030033C689 /* ProfileViewController.swift in Sources */,
 				F3410005289C52750033C689 /* TabBarConfigurator.swift in Sources */,
+				F353EC81289FE7BC005DD8C2 /* DetailViewController.swift in Sources */,
 				F341FFEE289C4BEF0033C689 /* SearchPresenter.swift in Sources */,
 				F37A8E73289D475B006CCF8D /* MainItemCollectionViewCell.swift in Sources */,
 				F341FFFA289C50D60033C689 /* FavoriteViewController.swift in Sources */,

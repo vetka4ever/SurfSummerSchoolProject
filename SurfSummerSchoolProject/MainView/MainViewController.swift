@@ -54,6 +54,7 @@ private extension MainViewController{
     func setCollectionView(){
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        collectionView.allowsSelection = false
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         collectionView.register(UINib(nibName: "\(MainItemCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(MainItemCollectionViewCell.self)")
         collectionView.delegate = self
@@ -72,8 +73,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainItemCollectionViewCell.self)", for: indexPath)
-        if let newCell = cell as? MainItemCollectionViewCell
-        {
+        if let newCell = cell as? MainItemCollectionViewCell{
             let item = presenter.getItem(id: indexPath.row)
             newCell.title = item.title
             newCell.image = item.image
@@ -97,6 +97,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         return Constants.spaceBetweenRows
         
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        if let correctCell = cell as? MainItemCollectionViewCell{
+            let newView = presenter.prepareDetailView(id: indexPath.row)
+            navigationController?.pushViewController(newView, animated: true)
+        }
+    }
     
 }

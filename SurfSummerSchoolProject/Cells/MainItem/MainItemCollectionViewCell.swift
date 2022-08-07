@@ -57,6 +57,7 @@ class MainItemCollectionViewCell: UICollectionViewCell {
 private extension MainItemCollectionViewCell{
     func configAppearance()
     {
+        
         textTitle.textColor = .black
         textTitle.font = .systemFont(ofSize: 12)
         imageView.layer.cornerRadius = 12
