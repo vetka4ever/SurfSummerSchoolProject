@@ -46,6 +46,8 @@ class MainItemCollectionViewCell: UICollectionViewCell {
             favoriteButton.setImage(image, for: .normal)
         }
     }
+    
+    
     //MARK: - UICollectionViewCell
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -29,7 +29,7 @@ class FavoriteTableViewCell: UITableViewCell {
             
         }
     }
-   
+    
     var mainTitle: String = ""{
         didSet{
             hideMainTitle.text = mainTitle
@@ -48,4 +48,6 @@ class FavoriteTableViewCell: UITableViewCell {
             hideUnderTitle.text = underTitle
         }
     }
+    
+    
 }

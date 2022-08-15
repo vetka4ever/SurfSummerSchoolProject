@@ -19,7 +19,8 @@ final class MainPresenter{
     }
     
     func getCountOfItems() -> Int{
-        model.getPosts()
+//        model.getPosts()
+        
         return  model.getCountOfItems()
     }
     

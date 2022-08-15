@@ -27,6 +27,7 @@ class MainViewController: UIViewController {
     
     // MARK: - UIViews
     private var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: .init())
+    private var activityIndicator = UIActivityIndicatorView()
     
     // MARK: - UIViewController
     
@@ -34,6 +35,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setAppearance()
         setCollectionView()
+        collectionView.isHidden = true
+        setActivityIndicator()
     }
     
     //MARK: - Selectors
@@ -59,12 +62,19 @@ private extension MainViewController{
         collectionView.register(UINib(nibName: "\(MainItemCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "\(MainItemCollectionViewCell.self)")
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16 )
-        
-        
         self.view.addSubview(collectionView)
     }
+    
+    func setActivityIndicator(){
+        activityIndicator.frame.size = CGSize(width: 32, height: 32)
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+    }
+    
+        
+        
 }
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
