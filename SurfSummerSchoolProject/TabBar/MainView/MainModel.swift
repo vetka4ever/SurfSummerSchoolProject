@@ -13,54 +13,45 @@ final class MainModel{
     //MARK: - Properties
     private var items: [DetailItemModel] = []
     private var helper = RequestHelper()
+    private var presenter: MainPresenter? = nil
+    private var userData = UserData()
+    
+    var setPresenter: MainPresenter?{
+        didSet{
+            presenter = setPresenter
+        }
+    }
     
     init(){
-        login()
+        print(userData.getValue(dataType: .token))
+        userData.refreshData {
+            print(self.userData.getValue(dataType: .token))
+            self.getPosts()
+        }
     }
     
-    private func login(){
-        let body: [String: Any] = ["phone": "+71234567890", "password": "qwerty"]
-        
-        let json = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
-        let url = helper.getUrl(typeOfQuery: .loginParam)
-        print(url)
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = json
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("*/*", forHTTPHeaderField: "Accept")
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {print(error?.localizedDescription ?? "No data");return}
-            guard let loginAnswer = try? JSONSerialization.jsonObject(with: data)  as? [String: Any] else {return}
-            guard let userInfo = loginAnswer["user_info"] as? [String:String] else {return}
-            print(userInfo)
-            
-        }.resume()
-    }
+    
     
     
     // MARK: - Methods
     private func getPosts(){
-        //        let url = helper.getUrl(typeOfQuery: .loginParam)
-        //        if let correctUrl = url{
-        //            URLSession.shared.dataTask(with: correctUrl) { data, response, error in
-        //                if let correctData = data{
-        //                    let newData = try? JSONDecoder().decode(ImageResponse.self, from: correctData)
-        //                    print(newData)
-        //                }
-        //                else{
-        //                    print("\(MainModel.self): PROBLEMS WITH CORRECT DATA")
-        //                }
-        //
-        //            }.resume()
-        //        }
-        //        else{
-        //            print("\(MainModel.self): PROBLEMS WITH CORRECT URL")
-        //        }
-        //
-        //
+        let url = helper.getUrl(typeOfQuery: .getPicture)
+        let token = userData.getValue(dataType: .token)!
+        print(token)
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        print("Token \(token)")
+        request.addValue("*/*", forHTTPHeaderField: "Accept")
+        request.addValue("gzip, deflate, br", forHTTPHeaderField: "Accept-Encoding")
+        
+        request.addValue("Token \(token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let newData = data else{print(error?.localizedDescription ?? "NO DATA"); return}
+            let answer = try? JSONSerialization.jsonObject(with: newData, options: .fragmentsAllowed)
+            print(answer)
+        }.resume()
     }
     
     

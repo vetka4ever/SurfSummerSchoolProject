@@ -34,9 +34,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         setAppearance()
-        setCollectionView()
-        collectionView.isHidden = true
-        setActivityIndicator()
+
     }
     
     //MARK: - Selectors
@@ -52,6 +50,9 @@ private extension MainViewController{
         navigationItem.rightBarButtonItem  = findButton
         self.title = "Главная"
         view.backgroundColor = .white
+        presenter.setView = self
+        setCollectionView()
+        //        setActivityIndicator()
     }
     
     func setCollectionView(){

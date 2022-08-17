@@ -10,21 +10,26 @@ import UIKit
 final class MainPresenter{
     // MARK: - Private properties
     private let model: MainModel = .init()
-    private var view = UIViewController()
+    private var view: MainViewController? = nil
     
+    init(){
+        model.setPresenter = self
+    }
     
     // MARK: - Methods For View
-    func setView(view: MainViewController){
-        self.view = view
+    var setView: MainViewController?{
+        didSet{
+            view = setView
+        }
     }
     
     func getCountOfItems() -> Int{
-//        model.getPosts()
+        //        model.getPosts()
         
         return  model.getCountOfItems()
     }
     
-
+    
     func getTitleOfItem(id: Int) -> String{
         model.getTitleOfItem(id: id)
     }
@@ -51,4 +56,6 @@ final class MainPresenter{
         view.accessToModel = item
         return view
     }
+    
+    // MARK: - Methods For Model
 }
