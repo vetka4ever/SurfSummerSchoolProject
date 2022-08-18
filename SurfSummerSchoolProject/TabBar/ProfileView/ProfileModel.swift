@@ -42,7 +42,7 @@ class ProfileModel{
         model.smartMindTitle = "«"+about+"»"
         
         let imageUrl = URL(string: userData.getValue(dataType: .avatar)!)
-        let data = try? Data(contentsOf: imageUrl!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+        let data = try? Data(contentsOf: imageUrl!) 
         model.viewImage = UIImage(data: data!)!
 //        model.viewImage = UIImage(named: "image 4")!
         

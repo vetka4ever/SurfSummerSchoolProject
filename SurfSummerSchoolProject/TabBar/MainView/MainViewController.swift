@@ -44,6 +44,13 @@ class MainViewController: UIViewController {
         print("Search Button was tapped")
         navigationController?.pushViewController(SearchViewController(), animated: true)
     }
+    
+    //MARK: - Presenter's Methods
+    func reloadCollectionView(){
+        self.collectionView.reloadData()
+        activityIndicator.stopAnimating()
+        
+    }
 }
 private extension MainViewController{
     func setAppearance(){
@@ -52,7 +59,7 @@ private extension MainViewController{
         view.backgroundColor = .white
         presenter.setView = self
         setCollectionView()
-        //        setActivityIndicator()
+        setActivityIndicator()
     }
     
     func setCollectionView(){
@@ -97,7 +104,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemWidth = (view.frame.width - Constants.horisontalInset * 2 - Constants.spaceBetweenRows) / 2
-        return CGSize(width: itemWidth, height: itemWidth * 1.46)
+        return CGSize(width: itemWidth, height: itemWidth * 1.48)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -108,12 +115,13 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         return Constants.spaceBetweenRows
         
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        if let correctCell = cell as? MainItemCollectionViewCell{
-            let newView = presenter.prepareDetailView(id: indexPath.row)
-            navigationController?.pushViewController(newView, animated: true)
-        }
-    }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath)
+//        if let correctCell = cell as? MainItemCollectionViewCell{
+//            let newView = presenter.prepareDetailView(id: indexPath.row)
+//            navigationController?.pushViewController(newView, animated: true)
+//        }
+//    }
     
 }

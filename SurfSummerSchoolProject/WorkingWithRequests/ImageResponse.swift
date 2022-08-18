@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
-struct ImageResponse: Decodable {
-    let id: String
-    let title: String
-    let content: String
-    let photoUrl: String
-    let publicationDate: Int
+class ImageResponse {
+    var id: String = ""
+    var title: String = ""
+    var content: String = ""
+    var photoUrl: String = ""
+    var image = UIImage()
+    var isFavotire: Bool = false
+    var publicationDate: Date = Date()
 }

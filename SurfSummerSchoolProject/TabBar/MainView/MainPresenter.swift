@@ -41,7 +41,7 @@ final class MainPresenter{
     func getFavoriteOfItem(id: Int) -> Bool{
         model.getFavoriteOfItem(id: id)
     }
-    func getItem(id: Int) -> DetailItemModel{
+    func getItem(id: Int) -> ImageResponse{
         model.getItem(id: id)
     }
     
@@ -51,11 +51,14 @@ final class MainPresenter{
     }
     
     func prepareDetailView(id: Int) -> DetailViewController{
-        let item = model.getItem(id: id)
+//        let item = model.getItem(id: id)
         let view = DetailViewController()
-        view.accessToModel = item
+//        view.accessToModel = item
         return view
     }
     
     // MARK: - Methods For Model
+    func dataLoaded(){
+        view?.reloadCollectionView()
+    }
 }

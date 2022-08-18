@@ -14,7 +14,7 @@ class RequestHelper{
     enum TypeOfRequest: String{
         case loginParam = "/auth/login"
         case logoutParam = "/auth/logout"
-        case getPicture = "/picture"
+        case getPicture = "/picture/"
     }
     //MARK: - Methods
     func getUrl(typeOfQuery: TypeOfRequest) -> URL{

@@ -65,14 +65,10 @@ class UserData{
     }
     
     func deleteAllData(){
-        var val = getValue(dataType: .lastName) as? String
-        print(val)
         
         keys.forEach { key in
             UserDefaults.standard.removeObject(forKey: key)
         }
         
-        val = getValue(dataType: .lastName) as? String
-        print(val)
     }
 }
