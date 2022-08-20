@@ -11,7 +11,14 @@ class ProfileModel{
     // MARK: - Properties
     private var userData = UserData()
     private var userImage = UIImage()
+    private var helper = RequestHelper()
+    private var presenter: ProfilePresenter? = nil
     
+    var accessToPresenter: ProfilePresenter?{
+        didSet{
+            presenter = accessToPresenter
+        }
+    }
     var city: ProfileWithTitlesModel{
         let model = ProfileWithTitlesModel()
         model.smallTitleLabel = "Город"
@@ -50,8 +57,38 @@ class ProfileModel{
     }
     // MARK: - Methods
     func deleteAllDataOfUser(){
-        userData.deleteAllData()
+        let url = helper.getUrl(typeOfQuery: .logoutParam)
+        var token = userData.getValue(dataType: .token)!
+        token = "Token " + token
+        print(url)
+        
+        print(token)
+        var request = URLRequest(url: url)
+        
+        request.setValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue("*/*", forHTTPHeaderField: "Accept")
+        request.httpMethod = "POST"
+        
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let newData = data else{print(error?.localizedDescription ?? "NO DATA"); return}
+            let answer = try? JSONSerialization.jsonObject(with: newData, options: .fragmentsAllowed)
+            if newData.count == 0{
+                self.userData.deleteAllData()
+                if let presenter = self.presenter {
+                    DispatchQueue.main.async {
+                        presenter.exitProfile()
+                    }
+                }
+            }
+            
+            
+        }.resume()
     }
+        
+        
+
+    
     
     
     

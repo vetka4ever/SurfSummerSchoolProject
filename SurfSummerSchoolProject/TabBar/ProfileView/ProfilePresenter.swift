@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 class ProfilePresenter{
+    init(){
+        model.accessToPresenter = self
+    }
     //MARK: - Properties
     private var model: ProfileModel = .init()
     private var view: ProfileViewController? = nil
@@ -83,13 +86,14 @@ class ProfilePresenter{
     }
     func deleteAllDataOfUser(){
         model.deleteAllDataOfUser()
+    }
+    
+    //MARK: - Methods For Model
+    func exitProfile(){
         if let view = view{
             let nextView = LoginView()
             let navController = UINavigationController(rootViewController: nextView)
             view.goToLoginView(navigationController: navController)
         }
     }
-    
-    //MARK: - Methods For Model
-    
 }

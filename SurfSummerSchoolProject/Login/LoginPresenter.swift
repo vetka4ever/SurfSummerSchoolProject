@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 class LoginPresenter{
     
     init() {
@@ -24,6 +25,7 @@ class LoginPresenter{
     }
     // MARK: - Methods for View
     func logIn(login: String, password: String){
+
         model.logIn(login: login, password: password)
     }
     
@@ -31,10 +33,18 @@ class LoginPresenter{
         
     }
     
+    
+    
     // MARK: - Methods for Model
     func updateView(){
         let newView = TabBarConfigurator().configure()
         guard let view = self.view else {return}
         view.goToNextView(view: newView)
+    }
+    
+    func uncorrectLoginOrPassword(){
+        if let view = view {
+            view.changeNavBarAppearance()
+        }
     }
 }

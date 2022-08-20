@@ -29,7 +29,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qE-Ar-9ig">
-                        <rect key="frame" x="160.5" y="256.5" width="26.5" height="12"/>
+                        <rect key="frame" x="205.5" y="256.5" width="26.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -55,6 +55,9 @@
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="fillFavorite"/>
+                        <connections>
+                            <action selector="favoriteButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DCz-1j-Jmt"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -70,11 +73,18 @@
                     <constraint firstItem="rHN-MZ-xpY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="htK-Xl-3ip"/>
                     <constraint firstItem="ny1-jk-Klm" firstAttribute="top" secondItem="3Vv-qI-Lg9" secondAttribute="bottom" constant="16" id="sPA-PN-x3c"/>
                     <constraint firstItem="9qE-Ar-9ig" firstAttribute="leading" secondItem="ny1-jk-Klm" secondAttribute="trailing" constant="121" id="sqX-BL-veK"/>
+                    <constraint firstAttribute="trailing" secondItem="9qE-Ar-9ig" secondAttribute="trailing" constant="16" id="wFM-db-BJ7"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="sqX-BL-veK"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="hideDateTitle" destination="9qE-Ar-9ig" id="ZYR-sa-f93"/>
+                <outlet property="hideFavouriteButton" destination="oKm-29-Y2m" id="cTi-hL-pyy"/>
                 <outlet property="hideMainTitle" destination="ny1-jk-Klm" id="fBP-dl-5iR"/>
                 <outlet property="hideUnderTitle" destination="rHN-MZ-xpY" id="DnG-Sz-7Zq"/>
                 <outlet property="viewImage" destination="3Vv-qI-Lg9" id="lRT-Ur-aiV"/>

@@ -36,20 +36,33 @@ class LoginModel{
             let answer = try? JSONSerialization.jsonObject(with: newData, options: .fragmentsAllowed) as? [String:Any]
             guard let saveAnswer = answer else {return}
             
-            let token = saveAnswer["token"] as! String
-            var userData = saveAnswer["user_info"] as! [String:String]
-            userData["token"] = token
-            userData[UserData.DataType.login.rawValue] = login
-            userData[UserData.DataType.password.rawValue] = password
+            if saveAnswer["code"] == nil{
+                let token = saveAnswer["token"] as! String
+                var userData = saveAnswer["user_info"] as! [String:String]
+                userData["token"] = token
+                userData[UserData.DataType.login.rawValue] = login
+                userData[UserData.DataType.password.rawValue] = password
 
-            let userDataClass = UserData()
-            userDataClass.write(dictionary: userData)
-            
-            
-            guard let presenter = self.presenter else {return}
-            DispatchQueue.main.async {
+                let userDataClass = UserData()
+                userDataClass.write(dictionary: userData)
+                
+                
+                guard let presenter = self.presenter else {return}
+                DispatchQueue.main.async {
                 presenter.updateView()
+                }
             }
+            else{
+                DispatchQueue.main.async {
+                    if let presenter = self.presenter {
+                        presenter.uncorrectLoginOrPassword()
+                        
+                    }
+                }
+            }
+            
+            
+            
             
         }.resume()
     }

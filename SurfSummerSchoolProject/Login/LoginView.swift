@@ -9,7 +9,6 @@ import UIKit
 
 class LoginView: UIViewController {
     // MARK: - Properties
-    
     private var loginTextField: UITextField = .init()
     private var passwordTextField: UITextField = .init()
     private var enterButton: UIButton = .init()
@@ -20,13 +19,33 @@ class LoginView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setAppearance()
-        
     }
     
-    // MARK: - Methods
+    var isDark = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return isDark ? .lightContent : .darkContent
+    }
+    
+    
+    // MARK: - Presenter's Methods
     func goToNextView(view: UITabBarController){
         view.modalPresentationStyle = .fullScreen
         present(view, animated: true, completion: nil)
+    }
+    
+    func changeNavBarAppearance(){
+        let appearance = UINavigationBarAppearance()
+        
+        appearance.backgroundColor = UIColor(red: 0.953, green: 0.345, blue: 0.345, alpha: 1)
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(red: 0.976, green: 0.98, blue: 1, alpha: 1)]
+        title = "Логин или пароль введен неправильно"
+        navigationItem.scrollEdgeAppearance = appearance
+        isDark.toggle()
     }
 }
 
@@ -35,6 +54,7 @@ class LoginView: UIViewController {
 private extension LoginView{
     
     func setAppearance(){
+        
         view.backgroundColor = .white
         title = "Вход"
         presenter.setView = self

@@ -6,18 +6,23 @@
 //
 
 import Foundation
+import UIKit
 class FavoritePresenter{
     // MARK: Properties
     private var model: FavoriteModel = .init()
-    
+    var view: FavoriteViewController? = nil
+    init(){
+        model.presenter = self
+    }
     // MARK: Methods
     
-    func getCountOfFavoriteItems() -> Int{
-        model.getCountOfFavoriteItems()
+    
+    
+    func removeIdOfFavoritePicture(id: String){
+        model.removeIdOfFavoritePicture(id: id)
     }
     
-    func getItemsWithId(id: Int) -> FavoriteModel.FavoriteItem{
-        return model.getItemsWithId(id: id)
-    }
+    
+    // MARK: Model Methods
     
 }

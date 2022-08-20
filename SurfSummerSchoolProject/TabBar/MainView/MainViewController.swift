@@ -23,6 +23,8 @@ class MainViewController: UIViewController {
         return button
     }
     private let presenter: MainPresenter = .init()
+    private let refreshControll = UIRefreshControl()
+    
     
     
     // MARK: - UIViews
@@ -34,7 +36,25 @@ class MainViewController: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         setAppearance()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.getIdOfFavoritePictures()
+        collectionView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let navController = tabBarController?.viewControllers?[1] as? UINavigationController{
+            if let viewController = navController.viewControllers.first as? FavoriteViewController{
+                presenter.saveIdOfFavoritesPictures()
+                let models = presenter.getFavoritePictures()
+                viewController.accessToModel = models
+                viewController.viewDidLoad()
+            }
+        }
     }
     
     //MARK: - Selectors
@@ -45,10 +65,18 @@ class MainViewController: UIViewController {
         navigationController?.pushViewController(SearchViewController(), animated: true)
     }
     
+    @objc func refreshControlSelector(_: UIRefreshControl)
+    {
+        presenter.saveIdOfFavoritesPictures()
+        presenter.getPosts()
+    }
+    
     //MARK: - Presenter's Methods
     func reloadCollectionView(){
-        self.collectionView.reloadData()
         activityIndicator.stopAnimating()
+        refreshControll.endRefreshing()
+        self.collectionView.reloadData()
+        
         
     }
 }
@@ -71,6 +99,9 @@ private extension MainViewController{
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16 )
+        
+        refreshControll.addTarget(self, action: #selector(refreshControlSelector), for: .valueChanged)
+        collectionView.refreshControl = refreshControll
         self.view.addSubview(collectionView)
     }
     
@@ -104,7 +135,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemWidth = (view.frame.width - Constants.horisontalInset * 2 - Constants.spaceBetweenRows) / 2
-        return CGSize(width: itemWidth, height: itemWidth * 1.48)
+        return CGSize(width: itemWidth, height: itemWidth * 1.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -116,12 +147,12 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.cellForItem(at: indexPath)
-//        if let correctCell = cell as? MainItemCollectionViewCell{
-//            let newView = presenter.prepareDetailView(id: indexPath.row)
-//            navigationController?.pushViewController(newView, animated: true)
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        if let correctCell = cell as? MainItemCollectionViewCell{
+            let newView = presenter.prepareDetailView(id: indexPath.row)
+            navigationController?.pushViewController(newView, animated: true)
+        }
+    }
     
 }

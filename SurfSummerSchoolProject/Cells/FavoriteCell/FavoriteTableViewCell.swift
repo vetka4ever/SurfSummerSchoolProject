@@ -8,25 +8,39 @@
 import UIKit
 
 class FavoriteTableViewCell: UITableViewCell {
-
     
- // MARK: Views
+    // MARK: - Events
+    var updateStatus: (()->Void)?
+    
+    // MARK: - Views
     @IBOutlet private var viewImage: UIImageView!
     @IBOutlet private weak var hideMainTitle: UILabel!
     @IBOutlet private weak var hideDateTitle: UILabel!
     @IBOutlet private weak var hideUnderTitle: UILabel!
+    @IBOutlet private var hideFavouriteButton: UIButton!
     
-    // MARK: Properties
+    @IBAction func favoriteButtonAction(_ sender: UIButton) {
+        updateStatus?()
+    }
+    
+    
+    // MARK: - Properties
     var image: UIImage?{
         didSet{
             viewImage.image = image
+            viewImage.layer.cornerRadius = 12
         }
     }
     
     var countOfLines: Int = 1{
         didSet{
             hideUnderTitle.numberOfLines = countOfLines
-            
+        }
+    }
+    
+    var buttonIsHidden: Bool = false{
+        didSet{
+            hideFavouriteButton.isHidden = buttonIsHidden
         }
     }
     

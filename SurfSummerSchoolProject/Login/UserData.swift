@@ -21,7 +21,7 @@ class UserData{
         case email = "email"
         case about = "about"
         case lastName = "lastName"
-        
+        case identifiersOfFavoritePictures = "identifiersOfFavoritePictures"
     }
     func write(dictionary: [String:String]){
         dictionary.keys.forEach { key in
@@ -69,6 +69,8 @@ class UserData{
         keys.forEach { key in
             UserDefaults.standard.removeObject(forKey: key)
         }
+        UserDefaults.standard.removeObject(forKey: DataType.identifiersOfFavoritePictures.rawValue
+        )
         
     }
 }

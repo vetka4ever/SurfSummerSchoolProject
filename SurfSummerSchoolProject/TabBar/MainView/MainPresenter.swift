@@ -24,11 +24,14 @@ final class MainPresenter{
     }
     
     func getCountOfItems() -> Int{
-        //        model.getPosts()
+        
         
         return  model.getCountOfItems()
     }
     
+    func getPosts(){
+                model.getPosts()
+    }
     
     func getTitleOfItem(id: Int) -> String{
         model.getTitleOfItem(id: id)
@@ -51,10 +54,36 @@ final class MainPresenter{
     }
     
     func prepareDetailView(id: Int) -> DetailViewController{
-//        let item = model.getItem(id: id)
+        let item = model.getItem(id: id)
+        
+        
+//        let calendar = Calendar.current
+//        let components = calendar.dateComponents([.year, .day, .month], from: item.publicationDate)
+//        let day = (components.day! < 10) ? ("0\(components.day!)") : ("\(components.day!)")
+//        let month = (components.month! < 10) ? ("0\(components.month!)") : ("\(components.month!)")
+//                let newDate = "\(day).\(month).\(components.year!)"
+        let detailModel = DetailItemModel(image: item.image,
+                                          title: item.title,
+                                          isFavotire: item.isFavotire,
+                                          dateCreation: item.dateInCorrectFormat,
+                                          content: item.content)
         let view = DetailViewController()
-//        view.accessToModel = item
+        view.accessToModel = detailModel
         return view
+    }
+    
+    func getFavoritePictures() -> [ImageResponse]{
+        let res = model.getFavoritePictures()
+        
+        return res
+    }
+    
+    func getIdOfFavoritePictures(){
+        model.getIdOfFavoritePictures()
+    }
+    
+    func saveIdOfFavoritesPictures(){
+        model.writeIdOfFavoritePictures()
     }
     
     // MARK: - Methods For Model

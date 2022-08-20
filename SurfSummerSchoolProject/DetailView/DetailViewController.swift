@@ -60,13 +60,14 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource{
             correctCell.mainTitle = model.title
             correctCell.underTitle = model.content
             correctCell.countOfLines = 0
+            correctCell.buttonIsHidden = true
             self.title = model.title
         }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let width: CGFloat = tableView.frame.width * 1.54
-        return width
+        let heigth: CGFloat = tableView.frame.width * 2.4
+        return heigth
     }
     
 }
